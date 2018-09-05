@@ -8,7 +8,12 @@ app.get('/', function(req, res){
 
 io.on('connection', function(socket){
   console.log('a user connected')
+  socket.on('sendScreen', function(screen){
+    console.log(screen)
+  })
 })
+
+
 
 http.listen(3000, function(){
   console.log('listening on *:3000')
