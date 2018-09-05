@@ -1,4 +1,4 @@
-const { desktopCapturer } = require('electron')
+const { desktopCapturer, ipcRenderer } = require('electron')
 const SimplePeer = require('simple-peer')
 
 desktopCapturer.getSources({types: ['window', 'screen']}, (error, sources) => {
@@ -23,19 +23,15 @@ desktopCapturer.getSources({types: ['window', 'screen']}, (error, sources) => {
   }
 })
 
-const config = {
-  iceServers: [{
-      url: 'stun:stun.l.google.com:19302'
-  }]
-}
-
 function handleStream (stream) {
-  const video = document.querySelector('video')
-  video.srcObject = stream
-  video.onloadedmetadata = (e) => video.play()
-  peer = new SimplePeer({ initiator: true, trickle: false, config: config })
-  peer._pc.addStream(stream)
-  console.log(peer);
+  peer = new SimplePeer({ initiator: true, trickle: false, stream: stream })
+  peer.on('signal', (data) => {
+    ipcRenderer.send('startService', data)
+  })
+  ipcRenderer.on('connectPeer', (event, data) => {
+    console.log('connect remote');
+    peer.signal(data)
+  })
 }
 
 function handleError (e) {

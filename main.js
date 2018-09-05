@@ -1,10 +1,11 @@
-const {app, BrowserWindow} = require('electron')
-require('./src/server')
+const { app, BrowserWindow, ipcMain } = require('electron')
+
+const startService = require('./src/server')
 
 let mainWindow
 
 function createWindow() {
-  mainWindow = new BrowserWindow({width: 300, height: 600})
+  mainWindow = new BrowserWindow({width: 350, height: 600})
 
   mainWindow.loadFile('./src/index.html')
 
@@ -25,4 +26,8 @@ app.on('activate', function () {
   if (mainWindow === null) {
     createWindow()
   }
+})
+
+ipcMain.on('startService', (event, dataChannel) => {
+  startService(dataChannel, event)
 })
