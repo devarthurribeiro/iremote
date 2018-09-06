@@ -5,10 +5,10 @@ const startService = require('./src/server')
 let mainWindow
 
 function createWindow() {
-  mainWindow = new BrowserWindow({width: 350, height: 600})
+  mainWindow = new BrowserWindow({width: 350, height: 400})
 
   mainWindow.loadFile('./src/index.html')
-
+  
   mainWindow.on('close', () => {
     mainWindow = null
   })

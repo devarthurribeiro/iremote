@@ -2,14 +2,31 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>iRemote</title>
+    <title>iRemote - GTI</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1>iRemote</h1>
-    <video src=""></video>
+    
+    <div class="container">
+        <h1>iRemote</h1>
+        <button id="share">Compartilhar Tela</button>
+        <br>
+        <p>
+          <b>Instruções:</b> <br> <br>
+          1 - Ative o compartilhamento. <br> <br>
+          2 - Fale o IP que vai aparecer. <br> <br>
+          3 - Feche o programa ao finalizar. <br><br>
+        </p>
+        <a href="#">Sobre</a>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
     <script>
-      require('./renderer.js')
+      const startRTC = require('./renderer.js')
+      document.getElementById('share')
+      .addEventListener('click', () => {
+        startRTC()
+      })
     </script>
   </body>
 </html>
