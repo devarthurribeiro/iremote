@@ -1,4 +1,4 @@
-var ui = {}
+const ui = {}
 
 module.exports = ui
 

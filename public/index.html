@@ -18,15 +18,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-peer/9.1.2/simplepeer.min.js"></script>
   <script>
     const peer = new SimplePeer()
-    var socket = io(window.location.origin)
+    const socket = io(window.location.origin)
     const video = document.querySelector('video')
+
     socket.on('dataToConnect', (data) => {
-      console.log(data);
       peer.signal(data)
     })
+
     peer.on('signal', (data) => {
       socket.emit('connectPeer', data)
     })    
+
     peer.on('stream', function (stream) {
       video.srcObject = stream
       video.onloadedmetadata = (e) => video.play()
@@ -42,11 +44,13 @@
       }
       socket.emit('sendKey', data)
     })
+
     window.addEventListener('mouseup', (e) => {
       var data = getMouseData(e)
       data.click = true
       socket.emit('mouseMove', data)
     })
+    
     function getMouseData (e) {
       var data = {}
       data.clientX = e.clientX
