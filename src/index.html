@@ -17,16 +17,23 @@
           2 - Fale o IP que vai aparecer. <br> <br>
           3 - Feche o programa ao finalizar. <br><br>
         </p>
-        <a href="#">Sobre</a>
+        <a id="about" href="#">Sobre</a>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+    <script src="./ui.js"></script>
     <script>
       const startRTC = require('./renderer.js')
-      document.getElementById('share')
-      .addEventListener('click', () => {
+      const { buttons: { share } } = ui
+      share.addEventListener('click', () => {
         startRTC()
+        share.disabled = true
       })
+
+      about.addEventListener('click', () => {
+        alert('Software desenvolvido por GTI - EAJ')
+      })
+
     </script>
   </body>
 </html>

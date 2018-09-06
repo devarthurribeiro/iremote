@@ -26,13 +26,17 @@ h1 {
 
 button {
   border: 0;
-  cursor: pointer;
   border-radius: 4px;
   color: #E1E2E1;
+  cursor: pointer;
   padding: 16px;
   font-weight: bold;
   background-color: #A23265;
   text-transform: uppercase;
+}
+
+button:disabled {
+  cursor: not-allowed;
 }
 
 .container {

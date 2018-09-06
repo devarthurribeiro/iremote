@@ -8,6 +8,7 @@ function createWindow() {
   mainWindow = new BrowserWindow({width: 350, height: 400})
 
   mainWindow.loadFile('./src/index.html')
+  mainWindow.setMenu(null)
   
   mainWindow.on('close', () => {
     mainWindow = null
