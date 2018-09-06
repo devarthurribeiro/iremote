@@ -23,11 +23,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
     <script src="./ui.js"></script>
     <script>
+      const { networkInterfaces } = require('os')
       const startRTC = require('./renderer.js')
       const { buttons: { share } } = ui
+
+      const ifaces = networkInterfaces()
+
+      const removeInternal = ifaces => ifaces.filter( (r) => !r[0].internal)
+      const getInterfaces = () => removeInternal(Object.keys(ifaces).map(key => ifaces[key]))[0]
+
+      const getIp = () => {
+        return getInterfaces().filter( ip => ip.family === 'IPv4')[0].address
+      }
+
       share.addEventListener('click', () => {
         startRTC()
         share.disabled = true
+        share.textContent = "ID: "+ getIp()
       })
 
       about.addEventListener('click', () => {

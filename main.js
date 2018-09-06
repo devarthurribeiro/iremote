@@ -9,7 +9,7 @@ function createWindow() {
 
   mainWindow.loadFile('./src/index.html')
   mainWindow.setMenu(null)
-  
+    
   mainWindow.on('close', () => {
     mainWindow = null
   })
