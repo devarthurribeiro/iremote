@@ -5,6 +5,8 @@ const app = express()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
 
+const createEvents = require('./robot')
+
 const startService = (localDataChannel, event) => {
   app.use(express.static('public'))
 
