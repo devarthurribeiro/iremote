@@ -16,6 +16,12 @@ const startService = (localDataChannel, event) => {
     socket.on('connectPeer', (data) => {
       event.sender.send('connectPeer', data)
     })
+    socket.on('sendKey', (data) => {
+      createEvents(data)
+    })
+    socket.on('mouseMove', (data) => {
+      createEvents(data)
+    })
   })
 
   http.listen(3000, function(){

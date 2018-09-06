@@ -12,7 +12,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/simple-peer/9.1.2/simplepeer.min.js"></script>
   <script>
     const peer = new SimplePeer()
-    var socket = io('http://localhost:3000')
+    var socket = io('http://10.0.0.107:3000')
+    const video = document.querySelector('video')
     socket.on('dataToConnect', (data) => {
       console.log(data);
       peer.signal(data)
@@ -21,10 +22,39 @@
       socket.emit('connectPeer', data)
     })    
     peer.on('stream', function (stream) {
-      const video = document.querySelector('video')
       video.srcObject = stream
       video.onloadedmetadata = (e) => video.play()
     })
+
+    window.addEventListener('keydown', (e) => {
+      var data = {
+        keyCode: e.keyCode,
+        shift: e.shiftKey,
+        meta: e.metaKey,
+        control: e.ctrlKey,
+        alt: e.altKey
+      }
+      socket.emit('sendKey', data)
+    })
+    window.addEventListener('mouseup', (e) => {
+      var data = getMouseData(e)
+      data.click = true
+      socket.emit('mouseMove', data)
+    })
+    function getMouseData (e) {
+      var data = {}
+      data.clientX = e.clientX
+      data.clientY = e.clientY
+
+      if (!video) video = document.querySelector('video')
+      if (video) {
+        videoSize = video.getBoundingClientRect()
+        data.canvasWidth = videoSize.width
+        data.canvasHeight = videoSize.height
+      }
+
+      return data
+    }
   </script>
 </body>
 </html>

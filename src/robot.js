@@ -1,8 +1,10 @@
 var robot = require('robotjs')
 var vkey = require('vkey')
+const electron = require('electron');
 
 module.exports = function createEvents (data) {
   if (data.click) {
+    const screen = electron.screen.getPrimaryDisplay().bounds
     var x = scale(data.clientX, 0, data.canvasWidth, 0, screen.width)
     var y = scale(data.clientY, 0, data.canvasHeight, 0, screen.height)
     var pos = robot.getMousePos() // hosts current x/y
@@ -11,7 +13,7 @@ module.exports = function createEvents (data) {
     robot.mouseClick() // click on remote click spot
     robot.moveMouse(pos.x, pos.y) // go back to hosts position
   }
-
+  
   if (data.keyCode) {
     var k = vkey[data.keyCode].toLowerCase()
     if (k === '<space>') k = ' '
