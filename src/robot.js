@@ -11,7 +11,7 @@ module.exports = function createEvents (data) {
     robot.moveMouse(x, y) // move to remotes pos
     robot.mouseToggle('up', 'left') // set mouse position to up
     robot.mouseClick() // click on remote click spot
-    robot.moveMouse(pos.x, pos.y) // go back to hosts position
+    setTimeout(() => robot.moveMouse(pos.x, pos.y), 400)
   }
   
   if (data.keyCode) {
