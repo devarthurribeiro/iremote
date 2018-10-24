@@ -14,8 +14,19 @@ run as system admin
 ### RUN OR BUILD:
 
 1. Clone this repo
-2. run yarn install
-3. run yarn rebuild
+2. Install modules 
+````
+yarn install
+````
+3. Rebuild modules
+````
+yarn rebuild
+````
 4. run yarn start 
- or to build
- yarn dist
+````
+yarn start 
+````
+ or build
+````
+yarn dist 
+````
