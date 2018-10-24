@@ -38,15 +38,25 @@
       }
 
       share.addEventListener('click', () => {
-        startRTC()
         share.disabled = true
-        share.textContent = "ID: "+ getIp()
+        share.textContent = "Aguarde..."
+        startRTC(() => {
+          share.textContent = "ID: "+ getIp()
+        })
       })
 
       about.addEventListener('click', () => {
         alert('Software desenvolvido por GTI - EAJ')
       })
+      const { BrowserWindow } = require('electron')
 
+      document.addEventListener("keydown", function (e) {
+        if (e.which === 123) {
+          require('electron').remote.getCurrentWindow().webContents.openDevTools()
+        } else if (e.which === 116) {
+          location.reload()
+        }
+      })
     </script>
   </body>
 </html>

@@ -6,9 +6,15 @@ const io = require('socket.io')(http)
 
 const createEvents = require('./robot')
 
-const startService = (localDataChannel, event) => {
+const startServe = () => {
   app.use(express.static('public'))
 
+  http.listen(3000, function(){
+    console.log('listening on *:3000')
+  })
+}
+
+const startService = (localDataChannel, event) => {
   io.on('connection', socket => {
 
     socket.emit('dataToConnect', localDataChannel)
@@ -25,10 +31,6 @@ const startService = (localDataChannel, event) => {
     })
     
   })
-
-  http.listen(3000, function(){
-    console.log('listening on *:3000')
-  })
 }
 
-module.exports = startService
+module.exports = { startServe, startService }

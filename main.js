@@ -1,15 +1,15 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 
-const startService = require('./src/server')
+const { startServe, startService } = require('./src/server')
 
 let mainWindow
 
 function createWindow() {
-  mainWindow = new BrowserWindow({width: 350, height: 550})
+  mainWindow = new BrowserWindow({width: 350, height: 600})
 
   mainWindow.loadFile('./src/index.html')
   mainWindow.setMenu(null)
-    
+  
   mainWindow.on('close', () => {
     mainWindow = null
   })
@@ -31,4 +31,8 @@ app.on('activate', function () {
 
 ipcMain.on('startService', (event, dataChannel) => {
   startService(dataChannel, event)
+})
+
+ipcMain.on('startServe', (event) => {
+  startServe()
 })
