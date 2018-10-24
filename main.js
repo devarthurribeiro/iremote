@@ -5,7 +5,7 @@ const startService = require('./src/server')
 let mainWindow
 
 function createWindow() {
-  mainWindow = new BrowserWindow({width: 350, height: 400})
+  mainWindow = new BrowserWindow({width: 350, height: 550})
 
   mainWindow.loadFile('./src/index.html')
   mainWindow.setMenu(null)
