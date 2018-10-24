@@ -6,12 +6,15 @@
   "scripts": {
     "start": "electron .",
     "rebuild": "electron-rebuild -f -w robotjs",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Arthur Ribeiro",
   "license": "ISC",
   "devDependencies": {
     "electron": "^3.0.5",
+    "electron-builder": "^20.28.4",
     "electron-rebuild": "^1.8.2"
   },
   "dependencies": {
