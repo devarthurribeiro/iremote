@@ -11,9 +11,11 @@ run as system admin
  npm install --global --production windows-build-tools
 ````
 
-### RUN:
+### RUN OR BUILD:
 
 1. Clone this repo
 2. run yarn install
 3. run yarn rebuild
-4. run yarn start
+4. run yarn start 
+ or to build
+ yarn dist
