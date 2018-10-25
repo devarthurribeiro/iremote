@@ -14,9 +14,12 @@ run as system admin
 ### RUN OR BUILD:
 
 1. Clone this repo
+````
+git clone https://github.com/devarthurribeiro/iremote.git
+````
 2. Install modules 
 ````
-yarn install
+yarn
 ````
 3. Rebuild modules
 ````
