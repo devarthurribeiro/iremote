@@ -2,7 +2,7 @@
 
 webrtc screensharing and remote control
 
-## BUILD AND RUN FOR WINDOWS
+## Build and run for windows
 
 ### Prerequisites:
 
@@ -11,7 +11,7 @@ run as system admin
  npm install --global --production windows-build-tools
 ````
 
-### RUN OR BUILD:
+### Run or build:
 
 1. Clone this repo
 ````
