@@ -23,7 +23,7 @@
     "electron-rebuild": "^1.8.2"
   },
   "dependencies": {
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "robotjs": "^0.5.1",
     "simple-peer": "^9.1.2",
     "socket.io": "^2.1.1",
